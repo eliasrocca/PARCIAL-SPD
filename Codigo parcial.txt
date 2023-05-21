@@ -1,0 +1,226 @@
+// C++ code
+//
+#define PULSADORPD 8
+#define PULSADORPS 9
+#define PULSADORPU 7
+#define LED_VERDE 13
+#define LED_ROJO 12
+#define LED_A 5
+#define LED_B 6
+#define LED_C A1
+#define LED_D A2
+#define LED_E A3
+#define LED_F 4
+#define LED_G 3
+#define TIEMPO 3000
+#define PISO_MAX 9
+#define PISO_MIN 0
+#define MOTOR 11
+bool pausa = false;
+bool movimiento = false;
+int pisoActual = 0;
+int pisoSiguiente = -2;
+
+
+void setup()
+{
+  pinMode(LED_VERDE, OUTPUT);
+  pinMode(LED_ROJO, OUTPUT);
+  pinMode(PULSADORPU, INPUT_PULLUP);
+  pinMode(PULSADORPD, INPUT);
+  pinMode(PULSADORPS, INPUT);
+  
+  pinMode(LED_A, OUTPUT);
+  pinMode(LED_B, OUTPUT);
+  pinMode(LED_C, OUTPUT);
+  pinMode(LED_D, OUTPUT);
+  pinMode(LED_G, OUTPUT);
+  pinMode(LED_F, OUTPUT);
+  pinMode(LED_E, OUTPUT);
+  encender(LED_ROJO);
+  encender(LED_A);
+  encender(LED_B);
+  encender(LED_C);
+  encender(LED_D);
+  encender(LED_E);
+  encender(LED_F);
+  pinMode(MOTOR, OUTPUT);
+  Serial.begin(9600);
+}
+void encender(int led)
+{
+  digitalWrite(led , HIGH);
+}
+
+void apagar(int led)
+{
+  digitalWrite(led , LOW);
+}
+
+void cambiarPiso(int numero)
+{
+  apagar(LED_A);
+  apagar(LED_B);
+  apagar(LED_C);
+  apagar(LED_D);
+  apagar(LED_E);
+  apagar(LED_F);
+  apagar(LED_G);
+  encender(MOTOR);
+  switch(numero)
+  {
+    case 0:
+      encender(LED_A);
+      encender(LED_B);
+      encender(LED_C);
+      encender(LED_D);
+      encender(LED_E);
+      encender(LED_F);
+    break;
+    
+    case 1:
+      
+      encender(LED_B);
+      encender(LED_C);
+    break;
+    
+    case 2:
+      encender(LED_A);
+      encender(LED_B);
+      encender(LED_G);
+      encender(LED_E);
+      encender(LED_D);
+    break;
+    
+    case 3:
+      encender(LED_A);
+      encender(LED_B);
+      encender(LED_G);
+      encender(LED_C);
+      encender(LED_D);
+    break;
+    
+    case 4:
+      encender(LED_F);
+      encender(LED_B);
+      encender(LED_G);
+      encender(LED_C);
+      
+    break;
+    
+    case 5:
+      encender(LED_A);
+      encender(LED_F);
+      encender(LED_G);
+      encender(LED_C);
+      encender(LED_D);
+    break;
+    
+    case 6:
+      encender(LED_A);
+      encender(LED_F);
+      encender(LED_G);
+      encender(LED_E);
+      encender(LED_C);
+      encender(LED_D);
+    break;
+    
+    case 7:
+      encender(LED_A);
+      encender(LED_B);
+      encender(LED_C);
+
+    break;
+    
+    case 8:
+      encender(LED_A);
+      encender(LED_B);
+      encender(LED_C);
+      encender(LED_G);
+      encender(LED_E);
+      encender(LED_D);
+      encender(LED_F);
+    break;
+    
+    case 9:
+      encender(LED_A);
+      encender(LED_B);
+      encender(LED_G);
+      encender(LED_F);
+      encender(LED_C);
+    break;
+    
+    	
+    
+    
+  }
+}
+
+void loop()
+{
+  int pulsadorPD;
+  int pulsadorPU;
+  int pulsadorPS;
+  
+  pulsadorPD = digitalRead(PULSADORPD);
+  pulsadorPU = digitalRead(PULSADORPU);
+  pulsadorPS = digitalRead(PULSADORPS);
+  
+  if(pulsadorPU == 0)
+  {
+    pisoSiguiente = 1;
+    
+  }
+  else
+  {
+    if(pulsadorPD == 1)
+    {
+      pisoSiguiente = -1;
+    }
+    else
+    {
+      if(pulsadorPS==1)
+      {
+        pausa = !pausa;
+        /*
+        apagar(LED_A);
+        apagar(LED_B);
+        apagar(LED_C);
+        apagar(LED_D);
+        apagar(LED_E);
+        apagar(LED_F);
+        encender(LED_G);
+        */
+        apagar(MOTOR);
+        apagar(LED_VERDE);
+
+        encender(LED_ROJO);
+        delay(TIEMPO);
+        Serial.println("Montacarga en pausa");
+      }
+    }
+  }
+  //Serial.println(pausa);
+  if(pausa == false && pisoSiguiente != -2)
+  {
+    if((pisoActual < PISO_MAX && pisoSiguiente == 1)||
+       (pisoActual > PISO_MIN && pisoSiguiente == -1))
+    {
+      delay(TIEMPO);
+      pisoActual += pisoSiguiente;
+      encender(LED_VERDE);
+      apagar(LED_ROJO);
+      cambiarPiso(pisoActual);
+      Serial.println("Usted se encuentra en el piso: ");
+      Serial.println(pisoActual);
+    }
+    else
+    {
+      pisoSiguiente = -2;
+    }
+  }
+  
+  
+  
+
+}
