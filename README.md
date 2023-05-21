@@ -15,3 +15,15 @@ La funcion principal se basa en mostrar por el visualizador de 7 segmentos en qu
 - [proyecto](https://www.tinkercad.com/things/gp66gDHy3El-elias-rocca-div-d-parcial-spd/editel?sharecode=iKdnLIWh9hVIrxyMmDlW3e7op9Ns6itmXjS1eat-3_k)
 
 
+### Fuentes
+- [Consejos para documentar](https://www.sohamkamani.com/how-to-write-good-documentation/#architecture-documentation).
+
+- [Lenguaje Markdown](https://markdown.es/sintaxis-markdown/#linkauto).
+
+- [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
+
+- [Tutorial](https://www.youtube.com/watch?v=oxaH9CFpeEE).
+
+- [Emojis](https://gist.github.com/rxaviers/7360908).
+
+
