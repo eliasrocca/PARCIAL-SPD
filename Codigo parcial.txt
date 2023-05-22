@@ -236,7 +236,7 @@ void loop()
     }
   }
   
-  if(sensorValue < 500)
+  if(analogRead(sensorValue) < 50)
   {
     encender(LED_AMARILLO);
   }
@@ -246,7 +246,7 @@ void loop()
   }
   
 
-  if(fotoValue < 50)
+  if(analogRead(fotoValue) < 50)
   {
     encender(MOTOR);
     
