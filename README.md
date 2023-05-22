@@ -15,6 +15,9 @@ La funcion principal se basa en mostrar por el visualizador de 7 segmentos en qu
 ## :robot: Link al proyecto
 - [proyecto](https://www.tinkercad.com/things/gp66gDHy3El-elias-rocca-div-d-parcial-spd/editel?sharecode=iKdnLIWh9hVIrxyMmDlW3e7op9Ns6itmXjS1eat-3_k)
 
+## Diagrama Esquemático
+[![Diagrama-Esquematico.png](https://i.postimg.cc/7Lq6P8Kg/Diagrama-Esquematico.png)](https://postimg.cc/rDYcgbXm)
+
 
 ### Fuentes
 - [Consejos para documentar](https://www.sohamkamani.com/how-to-write-good-documentation/#architecture-documentation).
